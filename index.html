@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Password Generator — Strong Random Passwords Online | Password Generator</title>
+<meta name="description" content="Generate strong random passwords in your browser. Length slider, character options, strength meter and entropy estimate. Free, private, no sign-up.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://passwordgenerator.github.io/">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#f8fafc;line-height:1.6}
+a{color:#047857;text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:#0f172a;color:#fff;padding:14px 20px;position:sticky;top:0;z-index:10}
+header .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.logo span{color:#34d399}
+nav{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+nav a{color:#cbd5e1;font-size:15px}
+nav a:hover{color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#0f172a,#065f46);color:#fff;padding:44px 0 34px}
+.hero h1{font-size:34px;line-height:1.2;margin-bottom:10px}
+.hero p{color:#d1fae5;max-width:720px;font-size:17px}
+.toolbox{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;margin:24px 0;box-shadow:0 4px 18px rgba(15,23,42,.07)}
+.toolbox h2{font-size:22px;margin-bottom:6px}
+.toolbox p.sub{color:#475569;margin-bottom:16px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=range]{width:100%}
+input[type=text],input[type=number],input[type=email],input[type=url],textarea,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;font-family:inherit}
+textarea{min-height:110px;resize:vertical}
+.checks{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+.checks label{font-weight:500;margin:0;display:flex;gap:7px;align-items:center}
+button,.btn{display:inline-block;background:#059669;color:#fff;border:0;border-radius:9px;padding:12px 22px;font-size:16px;font-weight:700;cursor:pointer}
+button:hover,.btn:hover{background:#047857}
+button.secondary{background:#e2e8f0;color:#0f172a}
+button.secondary:hover{background:#cbd5e1}
+.output{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0f172a;color:#a7f3d0;border-radius:10px;padding:16px;font-size:19px;word-break:break-all;margin:16px 0;min-height:56px}
+.meter{height:12px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.meter i{display:block;height:100%;width:0;background:#dc2626;transition:width .3s}
+.meta{color:#475569;font-size:14px}
+.meter-label{font-weight:700}
+.scroller{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.scroller::-webkit-scrollbar{height:8px}
+.scroller::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:99px}
+.card{flex:0 0 290px;scroll-snap-align:start;background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.card img{width:100%;height:150px;object-fit:cover;display:block}
+.card .pad{padding:14px 16px}
+.card h3{font-size:17px;line-height:1.35;margin-bottom:6px}
+.card h3 a{color:#0f172a}
+.card p{font-size:14px;color:#475569}
+.toolcard{flex:0 0 260px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;scroll-snap-align:start}
+.toolcard h3{font-size:18px;margin-bottom:6px}
+.toolcard p{font-size:14px;color:#475569;margin-bottom:12px}
+section{padding:26px 0}
+h2.sec{font-size:25px;margin-bottom:4px}
+p.lead{color:#475569;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.feat{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px}
+.feat h3{font-size:17px;margin-bottom:6px}
+.feat p{font-size:14px;color:#475569}
+article.prose{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:28px;margin:24px 0}
+article.prose h1{font-size:30px;line-height:1.25;margin-bottom:8px}
+article.prose h2{font-size:21px;margin:26px 0 8px}
+article.prose p{margin-bottom:14px}
+article.prose ul{margin:0 0 14px 22px}
+article.prose li{margin-bottom:6px}
+.heroimg{width:100%;border-radius:12px;margin:10px 0 6px}
+.faq{background:#f1f5f9;border-radius:12px;padding:20px;margin-top:26px}
+.faq h2{margin:0 0 10px}
+.faq h3{font-size:16px;margin:14px 0 4px}
+.faq p{font-size:15px;color:#334155}
+.breadcrumb{font-size:14px;color:#64748b;margin:18px 0 0}
+.result{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:16px;margin:14px 0}
+.warn{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px;margin:14px 0;font-size:15px}
+footer{background:#0f172a;color:#94a3b8;padding:30px 0;margin-top:30px}
+footer a{color:#cbd5e1}
+footer .wrap{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
+.note{font-size:13px;color:#64748b}
+@media(max-width:640px){.hero h1{font-size:27px}article.prose{padding:18px}.card{flex-basis:250px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/">Password<span>Generator</span></a>
+<nav><a href="/">Home</a><a href="/tools/passphrase-generator.html">Passphrase</a><a href="/tools/pin-generator.html">PIN</a><a href="/tools/password-strength-checker.html">Strength Checker</a><a href="/tools/password-entropy-calculator.html">Entropy Calculator</a></nav></div></header>
+
+<div class="hero"><div class="wrap"><h1>Strong passwords, generated safely in your browser</h1>
+<p>Create random, hard-to-guess passwords in one click. Nothing you type or generate is sent anywhere — every tool on this site runs entirely on your device.</p></div></div>
+<div class="wrap">
+<div class="toolbox"><h2>Password Generator</h2>
+<p class="sub">Move the slider, pick the character types you need, and copy the result. Randomness comes from your browser's cryptographic generator (<code>crypto.getRandomValues</code>).</p>
+<label for="len">Password length: <span id="lenVal">16</span> characters</label>
+<input type="range" id="len" min="6" max="64" value="16">
+<div class="checks">
+<label><input type="checkbox" id="low" checked> Lowercase (a-z)</label>
+<label><input type="checkbox" id="up" checked> Uppercase (A-Z)</label>
+<label><input type="checkbox" id="num" checked> Numbers (0-9)</label>
+<label><input type="checkbox" id="sym" checked> Symbols (!@#$...)</label>
+</div>
+<div class="output" id="pwOut"></div>
+<p class="meta" id="entropy"></p>
+<div class="meter"><i id="meterBar"></i></div>
+<p>Strength: <span class="meter-label" id="meterLab"></span></p>
+<p class="warn" id="pwErr" style="display:none">Please tick at least one character type.</p>
+<p style="margin-top:14px"><button id="genBtn" type="button">Generate new password</button>
+<button id="copyBtn" type="button" class="secondary">Copy password</button>
+<span class="meta" id="copied"></span></p>
+</div>
+<section><h2 class="sec">More free password tools</h2><p class="lead">Swipe sideways to browse all five tools.</p>
+<div class="scroller"><div class="toolcard"><h3>Passphrase Generator</h3><p>Memorable multi-word passphrases built from random dictionary words.</p><a class="btn" href="/tools/passphrase-generator.html">Use tool</a></div><div class="toolcard"><h3>PIN Generator</h3><p>Random numeric PINs for phones, cards and locks, with sequence filters.</p><a class="btn" href="/tools/pin-generator.html">Use tool</a></div><div class="toolcard"><h3>Password Strength Checker</h3><p>Score any password and see how long it would take to crack.</p><a class="btn" href="/tools/password-strength-checker.html">Use tool</a></div><div class="toolcard"><h3>Password Entropy Calculator</h3><p>Work out the entropy in bits of any password recipe.</p><a class="btn" href="/tools/password-entropy-calculator.html">Use tool</a></div></div></section>
+<section><h2 class="sec">Password and security guides</h2><p class="lead">Practical, plain-English guides — swipe sideways to browse all twenty.</p>
+<div class="scroller"><div class="card"><img src="/images/how-to-create-a-strong-password.jpg" alt="How to Create a Strong Password That You Can Actually Remember" loading="lazy"><div class="pad"><h3><a href="/guides/how-to-create-a-strong-password.html">How to Create a Strong Password That You Can Actually Remember</a></h3><p>A practical method for building passwords that are long, random and memorable — without writing them on a sticky note.</p></div></div><div class="card"><img src="/images/passphrase-vs-password.jpg" alt="Passphrase vs Password: Which Is Safer?" loading="lazy"><div class="pad"><h3><a href="/guides/passphrase-vs-password.html">Passphrase vs Password: Which Is Safer?</a></h3><p>Random strings and multi-word passphrases both work — but they win in different ways. Here is how to choose.</p></div></div><div class="card"><img src="/images/password-managers-explained.jpg" alt="Password Managers Explained: Are They Safe to Use?" loading="lazy"><div class="pad"><h3><a href="/guides/password-managers-explained.html">Password Managers Explained: Are They Safe to Use?</a></h3><p>One master password, unique logins everywhere, and no more sticky notes. How password managers work and whether to trust them.</p></div></div><div class="card"><img src="/images/two-factor-authentication-guide.jpg" alt="Two-Factor Authentication: A Complete Beginner's Guide" loading="lazy"><div class="pad"><h3><a href="/guides/two-factor-authentication-guide.html">Two-Factor Authentication: A Complete Beginner's Guide</a></h3><p>A stolen password should not be enough to break into your account. Two-factor authentication makes sure it is not.</p></div></div><div class="card"><img src="/images/stop-reusing-passwords.jpg" alt="Why Reusing Passwords Is Dangerous (and How to Stop)" loading="lazy"><div class="pad"><h3><a href="/guides/stop-reusing-passwords.html">Why Reusing Passwords Is Dangerous (and How to Stop)</a></h3><p>One leaked password should never open every account you own. Here is how credential stuffing works and how to break the habit.</p></div></div><div class="card"><img src="/images/pin-safety-guide.jpg" alt="PIN Safety: How to Choose and Protect a PIN" loading="lazy"><div class="pad"><h3><a href="/guides/pin-safety-guide.html">PIN Safety: How to Choose and Protect a PIN</a></h3><p>Four digits guard your phone, your bank card and your front door. Choose them well and keep them secret.</p></div></div><div class="card"><img src="/images/how-often-change-passwords.jpg" alt="How Often Should You Change Your Passwords?" loading="lazy"><div class="pad"><h3><a href="/guides/how-often-change-passwords.html">How Often Should You Change Your Passwords?</a></h3><p>The old advice to change passwords every 90 days is outdated. Here is what modern guidance actually says.</p></div></div><div class="card"><img src="/images/what-is-password-entropy.jpg" alt="What Is Password Entropy and Why Does It Matter?" loading="lazy"><div class="pad"><h3><a href="/guides/what-is-password-entropy.html">What Is Password Entropy and Why Does It Matter?</a></h3><p>Entropy is the number that tells you how hard a password is to guess. Here is what it means in plain English.</p></div></div><div class="card"><img src="/images/common-password-mistakes.jpg" alt="10 Common Password Mistakes (and How to Fix Them)" loading="lazy"><div class="pad"><h3><a href="/guides/common-password-mistakes.html">10 Common Password Mistakes (and How to Fix Them)</a></h3><p>Most account break-ins trace back to a handful of avoidable habits. Check how many of these you still do.</p></div></div><div class="card"><img src="/images/secure-passwords-for-work.jpg" alt="Password Security at Work: A Guide for Employees" loading="lazy"><div class="pad"><h3><a href="/guides/secure-passwords-for-work.html">Password Security at Work: A Guide for Employees</a></h3><p>Work accounts are prime targets. Here is how to keep company logins safe without slowing yourself down.</p></div></div><div class="card"><img src="/images/protecting-passwords-on-public-wifi.jpg" alt="How to Protect Your Passwords on Public Wi-Fi" loading="lazy"><div class="pad"><h3><a href="/guides/protecting-passwords-on-public-wifi.html">How to Protect Your Passwords on Public Wi-Fi</a></h3><p>Free airport and cafe Wi-Fi is convenient — and a favourite hunting ground for password thieves. Stay safe with these habits.</p></div></div><div class="card"><img src="/images/what-to-do-after-a-data-breach.jpg" alt="What to Do After a Data Breach Exposes Your Password" loading="lazy"><div class="pad"><h3><a href="/guides/what-to-do-after-a-data-breach.html">What to Do After a Data Breach Exposes Your Password</a></h3><p>Your password is in a leak. Do not panic — act in the right order, and the damage stops here.</p></div></div><div class="card"><img src="/images/biometric-vs-password.jpg" alt="Biometrics vs Passwords: Which Protects You Better?" loading="lazy"><div class="pad"><h3><a href="/guides/biometric-vs-password.html">Biometrics vs Passwords: Which Protects You Better?</a></h3><p>Your fingerprint cannot be forgotten — but it also cannot be changed. How biometrics and passwords compare, and how to use both.</p></div></div><div class="card"><img src="/images/password-security-for-seniors.jpg" alt="Password Security for Seniors: A Simple, Patient Guide" loading="lazy"><div class="pad"><h3><a href="/guides/password-security-for-seniors.html">Password Security for Seniors: A Simple, Patient Guide</a></h3><p>No jargon, no rush. A gentle, step-by-step guide to safer passwords for older adults and the family members who help them.</p></div></div><div class="card"><img src="/images/teaching-kids-password-safety.jpg" alt="Teaching Kids Password Safety Without Scaring Them" loading="lazy"><div class="pad"><h3><a href="/guides/teaching-kids-password-safety.html">Teaching Kids Password Safety Without Scaring Them</a></h3><p>Children need strong passwords too — but the lesson should feel like a superpower, not a lecture. A parent's guide.</p></div></div><div class="card"><img src="/images/passkeys-explained.jpg" alt="Passkeys Explained: The Passwordless Future" loading="lazy"><div class="pad"><h3><a href="/guides/passkeys-explained.html">Passkeys Explained: The Passwordless Future</a></h3><p>Passkeys promise a world without passwords. Here is how they work, whether they are safe, and what you should do today.</p></div></div><div class="card"><img src="/images/how-hackers-crack-passwords.jpg" alt="How Hackers Crack Passwords (and How to Slow Them Down)" loading="lazy"><div class="pad"><h3><a href="/guides/how-hackers-crack-passwords.html">How Hackers Crack Passwords (and How to Slow Them Down)</a></h3><p>Dictionary attacks, rainbow tables, credential stuffing — the methods attackers use, explained without jargon, and the defences that work.</p></div></div><div class="card"><img src="/images/secure-your-email-account.jpg" alt="Secure Your Email Account First: It Guards Everything Else" loading="lazy"><div class="pad"><h3><a href="/guides/secure-your-email-account.html">Secure Your Email Account First: It Guards Everything Else</a></h3><p>Your email is the master key to your digital life. Lock it down before anything else — here is the complete checklist.</p></div></div><div class="card"><img src="/images/password-length-vs-complexity.jpg" alt="Password Length vs Complexity: What Matters More?" loading="lazy"><div class="pad"><h3><a href="/guides/password-length-vs-complexity.html">Password Length vs Complexity: What Matters More?</a></h3><p>Symbols, numbers, capitals — or just more characters? The maths says one of them wins by a wide margin.</p></div></div><div class="card"><img src="/images/creating-passwords-for-shared-accounts.jpg" alt="Shared Accounts: How to Share Passwords Safely" loading="lazy"><div class="pad"><h3><a href="/guides/creating-passwords-for-shared-accounts.html">Shared Accounts: How to Share Passwords Safely</a></h3><p>Family streaming, a shared business login, a household Wi-Fi password — sharing is sometimes necessary. Do it without giving away the keys.</p></div></div></div></section>
+<section><h2 class="sec">Why use a password generator?</h2>
+<div class="grid">
+<div class="feat"><h3>Humans pick predictable passwords</h3><p>People reuse names, dates and keyboard patterns. A generator picks uniformly at random, so attackers cannot guess your habits.</p></div>
+<div class="feat"><h3>Length beats cleverness</h3><p>Every extra character multiplies the guessing work. A 16-character random password is vastly stronger than an 8-character "clever" one.</p></div>
+<div class="feat"><h3>Private by design</h3><p>These tools have no server and no tracking. Your passwords are generated locally and never uploaded, stored or logged.</p></div>
+<div class="feat"><h3>Pair it with a manager</h3><p>Generate a unique password for every account and store it in a password manager, so you only have to remember one strong master password.</p></div>
+</div></section>
+</div>
+
+<script>
+function secureRandom(n){var a=new Uint32Array(n);crypto.getRandomValues(a);return a;}
+function gen(){
+ var len=+document.getElementById('len').value;
+ var up=document.getElementById('up').checked, low=document.getElementById('low').checked,
+     num=document.getElementById('num').checked, sym=document.getElementById('sym').checked;
+ var pool=''; if(low)pool+='abcdefghijklmnopqrstuvwxyz'; if(up)pool+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ if(num)pool+='0123456789'; if(sym)pool+='!@#$%^&*()-_=+[]{};:,.<>?';
+ var err=document.getElementById('pwErr');
+ if(!pool){err.style.display='block';document.getElementById('pwOut').textContent='';return;}
+ err.style.display='none';
+ var r=secureRandom(len), out='';
+ for(var i=0;i<len;i++){out+=pool[r[i]%pool.length];}
+ document.getElementById('pwOut').textContent=out;
+ var bits=(Math.log2(pool.length)*len);
+ document.getElementById('entropy').textContent='Estimated entropy: '+bits.toFixed(1)+' bits  |  Character set: '+pool.length+' symbols  |  Length: '+len;
+ var score=0; if(len>=12)score++; if(len>=16)score++; if(len>=20)score++;
+ if(up&&low)score++; if(num)score++; if(sym)score++;
+ var pct=Math.min(100,score/6*100), bar=document.getElementById('meterBar'), lab=document.getElementById('meterLab');
+ bar.style.width=pct+'%';
+ var names=['Very weak','Weak','Fair','Good','Strong','Very strong'], cols=['#dc2626','#ea580c','#d97706','#65a30d','#059669','#047857'];
+ var idx=Math.min(5,score); lab.textContent=names[idx]; bar.style.background=cols[idx];
+}
+function copyPw(){var t=document.getElementById('pwOut').textContent;
+ if(!t){return;} if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){document.getElementById('copied').textContent='Copied to clipboard.';});}}
+document.getElementById('len').addEventListener('input',function(){document.getElementById('lenVal').textContent=this.value;gen();});
+['up','low','num','sym'].forEach(function(id){document.getElementById(id).addEventListener('change',gen);});
+document.getElementById('genBtn').addEventListener('click',gen);
+document.getElementById('copyBtn').addEventListener('click',copyPw);
+gen();
+</script>
+
+<footer><div class="wrap"><div><strong style="color:#fff">Password Generator</strong><br>Free password tools that run entirely in your browser.<br>Your passwords never leave your device.</div><div><a href="/about.html">About</a> &middot; <a href="/contact.html">Contact</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/disclaimer.html">Disclaimer</a></div></div></footer>
+</body>
+</html>
