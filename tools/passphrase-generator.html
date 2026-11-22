@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passphrase Generator | Password Generator</title>
+<meta name="description" content="Generate memorable random passphrases from dictionary words, with an entropy estimate.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://passwordgenerator.github.io/tools/passphrase-generator.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#f8fafc;line-height:1.6}
+a{color:#047857;text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:#0f172a;color:#fff;padding:14px 20px;position:sticky;top:0;z-index:10}
+header .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.logo span{color:#34d399}
+nav{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+nav a{color:#cbd5e1;font-size:15px}
+nav a:hover{color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#0f172a,#065f46);color:#fff;padding:44px 0 34px}
+.hero h1{font-size:34px;line-height:1.2;margin-bottom:10px}
+.hero p{color:#d1fae5;max-width:720px;font-size:17px}
+.toolbox{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;margin:24px 0;box-shadow:0 4px 18px rgba(15,23,42,.07)}
+.toolbox h2{font-size:22px;margin-bottom:6px}
+.toolbox p.sub{color:#475569;margin-bottom:16px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=range]{width:100%}
+input[type=text],input[type=number],input[type=email],input[type=url],textarea,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;font-family:inherit}
+textarea{min-height:110px;resize:vertical}
+.checks{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+.checks label{font-weight:500;margin:0;display:flex;gap:7px;align-items:center}
+button,.btn{display:inline-block;background:#059669;color:#fff;border:0;border-radius:9px;padding:12px 22px;font-size:16px;font-weight:700;cursor:pointer}
+button:hover,.btn:hover{background:#047857}
+button.secondary{background:#e2e8f0;color:#0f172a}
+button.secondary:hover{background:#cbd5e1}
+.output{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0f172a;color:#a7f3d0;border-radius:10px;padding:16px;font-size:19px;word-break:break-all;margin:16px 0;min-height:56px}
+.meter{height:12px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.meter i{display:block;height:100%;width:0;background:#dc2626;transition:width .3s}
+.meta{color:#475569;font-size:14px}
+.meter-label{font-weight:700}
+.scroller{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.scroller::-webkit-scrollbar{height:8px}
+.scroller::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:99px}
+.card{flex:0 0 290px;scroll-snap-align:start;background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.card img{width:100%;height:150px;object-fit:cover;display:block}
+.card .pad{padding:14px 16px}
+.card h3{font-size:17px;line-height:1.35;margin-bottom:6px}
+.card h3 a{color:#0f172a}
+.card p{font-size:14px;color:#475569}
+.toolcard{flex:0 0 260px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;scroll-snap-align:start}
+.toolcard h3{font-size:18px;margin-bottom:6px}
+.toolcard p{font-size:14px;color:#475569;margin-bottom:12px}
+section{padding:26px 0}
+h2.sec{font-size:25px;margin-bottom:4px}
+p.lead{color:#475569;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.feat{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px}
+.feat h3{font-size:17px;margin-bottom:6px}
+.feat p{font-size:14px;color:#475569}
+article.prose{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:28px;margin:24px 0}
+article.prose h1{font-size:30px;line-height:1.25;margin-bottom:8px}
+article.prose h2{font-size:21px;margin:26px 0 8px}
+article.prose p{margin-bottom:14px}
+article.prose ul{margin:0 0 14px 22px}
+article.prose li{margin-bottom:6px}
+.heroimg{width:100%;border-radius:12px;margin:10px 0 6px}
+.faq{background:#f1f5f9;border-radius:12px;padding:20px;margin-top:26px}
+.faq h2{margin:0 0 10px}
+.faq h3{font-size:16px;margin:14px 0 4px}
+.faq p{font-size:15px;color:#334155}
+.breadcrumb{font-size:14px;color:#64748b;margin:18px 0 0}
+.result{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:16px;margin:14px 0}
+.warn{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px;margin:14px 0;font-size:15px}
+footer{background:#0f172a;color:#94a3b8;padding:30px 0;margin-top:30px}
+footer a{color:#cbd5e1}
+footer .wrap{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
+.note{font-size:13px;color:#64748b}
+@media(max-width:640px){.hero h1{font-size:27px}article.prose{padding:18px}.card{flex-basis:250px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/">Password<span>Generator</span></a>
+<nav><a href="/">Home</a><a href="/tools/passphrase-generator.html">Passphrase</a><a href="/tools/pin-generator.html">PIN</a><a href="/tools/password-strength-checker.html">Strength Checker</a><a href="/tools/password-entropy-calculator.html">Entropy Calculator</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="/">Home</a> &rsaquo; Tools &rsaquo; Passphrase Generator</p><div class="toolbox"><h2>Passphrase Generator</h2><p class="sub">Passphrases are easier to remember than random strings and can be just as strong. Pick a word count and a separator.</p>
+<label for="words">Number of words: <span id="wVal">4</span></label>
+<input type="range" id="words" min="3" max="8" value="4" oninput="document.getElementById('wVal').textContent=this.value;genPass();">
+<label for="sep">Separator</label>
+<select id="sep" onchange="genPass()"><option value="-">Hyphen (-)</option><option value=" ">Space</option><option value=".">Dot (.)</option><option value="_">Underscore (_)</option></select>
+<div class="checks"><label><input type="checkbox" id="cap" onchange="genPass()"> Capitalise each word</label>
+<label><input type="checkbox" id="addnum" onchange="genPass()"> Add a two-digit number</label></div>
+<div class="output" id="ppOut"></div><p class="meta" id="ppMeta"></p>
+<p><button id="ppBtn" type="button">Generate new passphrase</button> <button id="ppCopy" type="button" class="secondary">Copy</button></p>
+<p class="note">Words are drawn at random with crypto.getRandomValues from a built-in word list. Four random words from a 100-word list give about 27 bits; use five or six words for important accounts.</p>
+<script>
+var WORDS=("apple river stone quiet brave candle garden silver meadow harbor velvet anchor bridge canyon cloud desert eagle falcon glacier island jungle kite lantern mango noble ocean pebble quartz rocket saddle temple umbrella valley whisper yellow zephyr amber breeze coral dawn ember frost grove hazel ivory jasmine koala lemon maple nutmeg olive panda quill robin sage tiger tulip urban vivid willow xenon yarn zinc almond bamboo cherry dragon elm fern grape honey iris jade kiwi lime moth ninja opal pearl rust solar tango umber vine wolf almond bamboo cherry dragon elm fern grape honey iris jade kiwi lime moth ninja opal pearl rust solar tango umber vine wolf").split(" ");
+function genPass(){
+ var n=+document.getElementById('words').value, sep=document.getElementById('sep').value;
+ var cap=document.getElementById('cap').checked, addNum=document.getElementById('addnum').checked;
+ var r=new Uint32Array(n); crypto.getRandomValues(r);
+ var out=[];
+ for(var i=0;i<n;i++){var w=WORDS[r[i]%WORDS.length]; if(cap)w=w.charAt(0).toUpperCase()+w.slice(1); out.push(w);}
+ var s=out.join(sep);
+ if(addNum){var d=new Uint32Array(1);crypto.getRandomValues(d);s+=sep+(d[0]%90+10);}
+ document.getElementById('ppOut').textContent=s;
+ var bits=(Math.log2(WORDS.length)*n+(addNum?6.5:0));
+ document.getElementById('ppMeta').textContent='About '+bits.toFixed(1)+' bits of entropy from a '+WORDS.length+'-word list. '+n+' words'+(addNum?' plus a two-digit number':'')+'.';
+}
+document.getElementById('ppBtn').addEventListener('click',genPass);
+document.getElementById('ppCopy').addEventListener('click',function(){var t=document.getElementById('ppOut').textContent;if(t&&navigator.clipboard)navigator.clipboard.writeText(t);});
+genPass();
+</script>
+</div></div>
+<footer><div class="wrap"><div><strong style="color:#fff">Password Generator</strong><br>Free password tools that run entirely in your browser.<br>Your passwords never leave your device.</div><div><a href="/about.html">About</a> &middot; <a href="/contact.html">Contact</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/disclaimer.html">Disclaimer</a></div></div></footer>
+</body>
+</html>
