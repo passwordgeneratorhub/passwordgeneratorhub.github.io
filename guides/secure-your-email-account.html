@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secure Your Email Account First: It Guards Everything Else | Password Generator</title>
+<meta name="description" content="Your email is the master key to your digital life. Lock it down before anything else — here is the complete checklist.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://passwordgenerator.github.io/guides/secure-your-email-account.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#f8fafc;line-height:1.6}
+a{color:#047857;text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:#0f172a;color:#fff;padding:14px 20px;position:sticky;top:0;z-index:10}
+header .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.logo span{color:#34d399}
+nav{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+nav a{color:#cbd5e1;font-size:15px}
+nav a:hover{color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#0f172a,#065f46);color:#fff;padding:44px 0 34px}
+.hero h1{font-size:34px;line-height:1.2;margin-bottom:10px}
+.hero p{color:#d1fae5;max-width:720px;font-size:17px}
+.toolbox{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;margin:24px 0;box-shadow:0 4px 18px rgba(15,23,42,.07)}
+.toolbox h2{font-size:22px;margin-bottom:6px}
+.toolbox p.sub{color:#475569;margin-bottom:16px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=range]{width:100%}
+input[type=text],input[type=number],input[type=email],input[type=url],textarea,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;font-family:inherit}
+textarea{min-height:110px;resize:vertical}
+.checks{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+.checks label{font-weight:500;margin:0;display:flex;gap:7px;align-items:center}
+button,.btn{display:inline-block;background:#059669;color:#fff;border:0;border-radius:9px;padding:12px 22px;font-size:16px;font-weight:700;cursor:pointer}
+button:hover,.btn:hover{background:#047857}
+button.secondary{background:#e2e8f0;color:#0f172a}
+button.secondary:hover{background:#cbd5e1}
+.output{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0f172a;color:#a7f3d0;border-radius:10px;padding:16px;font-size:19px;word-break:break-all;margin:16px 0;min-height:56px}
+.meter{height:12px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.meter i{display:block;height:100%;width:0;background:#dc2626;transition:width .3s}
+.meta{color:#475569;font-size:14px}
+.meter-label{font-weight:700}
+.scroller{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.scroller::-webkit-scrollbar{height:8px}
+.scroller::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:99px}
+.card{flex:0 0 290px;scroll-snap-align:start;background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.card img{width:100%;height:150px;object-fit:cover;display:block}
+.card .pad{padding:14px 16px}
+.card h3{font-size:17px;line-height:1.35;margin-bottom:6px}
+.card h3 a{color:#0f172a}
+.card p{font-size:14px;color:#475569}
+.toolcard{flex:0 0 260px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;scroll-snap-align:start}
+.toolcard h3{font-size:18px;margin-bottom:6px}
+.toolcard p{font-size:14px;color:#475569;margin-bottom:12px}
+section{padding:26px 0}
+h2.sec{font-size:25px;margin-bottom:4px}
+p.lead{color:#475569;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.feat{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px}
+.feat h3{font-size:17px;margin-bottom:6px}
+.feat p{font-size:14px;color:#475569}
+article.prose{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:28px;margin:24px 0}
+article.prose h1{font-size:30px;line-height:1.25;margin-bottom:8px}
+article.prose h2{font-size:21px;margin:26px 0 8px}
+article.prose p{margin-bottom:14px}
+article.prose ul{margin:0 0 14px 22px}
+article.prose li{margin-bottom:6px}
+.heroimg{width:100%;border-radius:12px;margin:10px 0 6px}
+.faq{background:#f1f5f9;border-radius:12px;padding:20px;margin-top:26px}
+.faq h2{margin:0 0 10px}
+.faq h3{font-size:16px;margin:14px 0 4px}
+.faq p{font-size:15px;color:#334155}
+.breadcrumb{font-size:14px;color:#64748b;margin:18px 0 0}
+.result{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:16px;margin:14px 0}
+.warn{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px;margin:14px 0;font-size:15px}
+footer{background:#0f172a;color:#94a3b8;padding:30px 0;margin-top:30px}
+footer a{color:#cbd5e1}
+footer .wrap{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
+.note{font-size:13px;color:#64748b}
+@media(max-width:640px){.hero h1{font-size:27px}article.prose{padding:18px}.card{flex-basis:250px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/">Password<span>Generator</span></a>
+<nav><a href="/">Home</a><a href="/tools/passphrase-generator.html">Passphrase</a><a href="/tools/pin-generator.html">PIN</a><a href="/tools/password-strength-checker.html">Strength Checker</a><a href="/tools/password-entropy-calculator.html">Entropy Calculator</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="/">Home</a> &rsaquo; Guides &rsaquo; Secure Your Email Account First: It Guards Everything Else</p><article class="prose"><h1>Secure Your Email Account First: It Guards Everything Else</h1><p class="meta">Your email is the master key to your digital life. Lock it down before anything else — here is the complete checklist.</p><img class="heroimg" src="/images/secure-your-email-account.jpg" alt="Secure Your Email Account First: It Guards Everything Else"><p>If an attacker could choose one of your accounts to break into, they would choose your email. Email is where password-reset links go, where bank alerts arrive, where private conversations live, and where the proof of your identity sits. Break into someone's email and you can reset their bank password, their shopping accounts, their social media — almost everything. Yet many people protect their email with a short reused password and no second factor, while guarding less important accounts more carefully. Securing your email is the highest-value security task you can do, and it takes less than an hour.</p><h2>Why email is the master key</h2><p>Almost every online service uses your email address as your username and as the way to prove you own the account. Forget a password and the reset link goes to your email. Change a phone number and the confirmation goes to your email. A new device signs in and the alert goes to your email. That design makes email the single point of failure for your entire digital life: whoever controls your inbox controls the reset process for everything else. Attackers know this, which is why email accounts are targeted with phishing more than any other account. A strong, unique email password is not optional; it is the foundation everything else stands on.</p><h2>The email security checklist</h2><p>Start with a long, random, unique password — at least 16 characters, generated by a password manager and used nowhere else. Then turn on two-factor authentication with an authenticator app, and save the recovery codes somewhere safe. Next, check the account's recovery options: is the recovery email address yours, and is the recovery phone number current? Then review the security settings for connected apps and devices, and remove anything you do not recognise. Finally, look for mail forwarding rules and filters you did not create — attackers set these up to quietly copy your mail even after you change the password. Work through this list once and you have done most of the job.</p><h2>Spotting email phishing</h2><p>Phishing emails are the main route into email accounts, and they have become convincing: they copy the design of real messages from banks, delivery companies and even your email provider itself. The signs to watch for are a sender address that does not quite match, a message that creates urgency — your account will be closed, a parcel is waiting, a payment failed — and a link that leads somewhere unexpected. Hover over links before clicking, and never log in through a link in an email: type the address yourself or use your bookmarks. If a message asks you to download an attachment you did not expect, do not open it. And remember that your email provider will never ask for your password by email.</p><h2>What to do if your email is compromised</h2><p>If you suspect someone is in your email, act in this order. First, change the password from a device you trust, and sign out of all other sessions — most providers offer a sign-out-everywhere option. Second, check and remove any forwarding rules, filters, recovery addresses and connected apps you do not recognise. Third, check the sent folder and the trash for messages you did not send, and warn your contacts if spam went out in your name. Fourth, change the passwords of your most important accounts — banking first — because the attacker may have used your email to reset them. Finally, turn on two-factor authentication if it was not already on, and watch for password-reset emails over the following days, which show the attacker is still trying.</p><h2>Keeping email safe over time</h2><p>Email security is not a one-time task. Once a year, review your connected apps and remove the ones you no longer use — old games, forgotten services, and apps that asked for full mailbox access. Check that your recovery phone number is still yours, especially after changing numbers. Use a separate email address for unimportant sign-ups if you can, so your main address is exposed less often. And keep your password manager's master password strong, because it guards the email password too. A secure email account does not just protect your messages; it protects every account that depends on it, which is nearly all of them.</p><div class="faq"><h2>Frequently asked questions</h2><h3>What is the first thing I should do to secure my email?</h3><p>Give it a long, unique password and turn on two-factor authentication. Those two steps block the vast majority of attacks.</p><h3>How can I tell if someone is reading my email?</h3><p>Check the account's recent activity and connected devices, and look for forwarding rules or filters you did not create.</p><h3>Should I use a separate email for sign-ups?</h3><p>It helps. A secondary address for newsletters and unimportant accounts keeps your main address out of more breach lists.</p></div><h2>More guides</h2><ul><li><a href="/guides/how-to-create-a-strong-password.html">How to Create a Strong Password That You Can Actually Remember</a></li><li><a href="/guides/passphrase-vs-password.html">Passphrase vs Password: Which Is Safer?</a></li><li><a href="/guides/password-managers-explained.html">Password Managers Explained: Are They Safe to Use?</a></li><li><a href="/guides/two-factor-authentication-guide.html">Two-Factor Authentication: A Complete Beginner's Guide</a></li></ul><p><a class="btn" href="/">Try the free password generator</a></p></article></div>
+<footer><div class="wrap"><div><strong style="color:#fff">Password Generator</strong><br>Free password tools that run entirely in your browser.<br>Your passwords never leave your device.</div><div><a href="/about.html">About</a> &middot; <a href="/contact.html">Contact</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/disclaimer.html">Disclaimer</a></div></div></footer>
+</body>
+</html>

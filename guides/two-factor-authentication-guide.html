@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-Factor Authentication: A Complete Beginner's Guide | Password Generator</title>
+<meta name="description" content="A stolen password should not be enough to break into your account. Two-factor authentication makes sure it is not.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://passwordgenerator.github.io/guides/two-factor-authentication-guide.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#f8fafc;line-height:1.6}
+a{color:#047857;text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:#0f172a;color:#fff;padding:14px 20px;position:sticky;top:0;z-index:10}
+header .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.logo span{color:#34d399}
+nav{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+nav a{color:#cbd5e1;font-size:15px}
+nav a:hover{color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#0f172a,#065f46);color:#fff;padding:44px 0 34px}
+.hero h1{font-size:34px;line-height:1.2;margin-bottom:10px}
+.hero p{color:#d1fae5;max-width:720px;font-size:17px}
+.toolbox{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;margin:24px 0;box-shadow:0 4px 18px rgba(15,23,42,.07)}
+.toolbox h2{font-size:22px;margin-bottom:6px}
+.toolbox p.sub{color:#475569;margin-bottom:16px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=range]{width:100%}
+input[type=text],input[type=number],input[type=email],input[type=url],textarea,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;font-family:inherit}
+textarea{min-height:110px;resize:vertical}
+.checks{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+.checks label{font-weight:500;margin:0;display:flex;gap:7px;align-items:center}
+button,.btn{display:inline-block;background:#059669;color:#fff;border:0;border-radius:9px;padding:12px 22px;font-size:16px;font-weight:700;cursor:pointer}
+button:hover,.btn:hover{background:#047857}
+button.secondary{background:#e2e8f0;color:#0f172a}
+button.secondary:hover{background:#cbd5e1}
+.output{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0f172a;color:#a7f3d0;border-radius:10px;padding:16px;font-size:19px;word-break:break-all;margin:16px 0;min-height:56px}
+.meter{height:12px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.meter i{display:block;height:100%;width:0;background:#dc2626;transition:width .3s}
+.meta{color:#475569;font-size:14px}
+.meter-label{font-weight:700}
+.scroller{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.scroller::-webkit-scrollbar{height:8px}
+.scroller::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:99px}
+.card{flex:0 0 290px;scroll-snap-align:start;background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.card img{width:100%;height:150px;object-fit:cover;display:block}
+.card .pad{padding:14px 16px}
+.card h3{font-size:17px;line-height:1.35;margin-bottom:6px}
+.card h3 a{color:#0f172a}
+.card p{font-size:14px;color:#475569}
+.toolcard{flex:0 0 260px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;scroll-snap-align:start}
+.toolcard h3{font-size:18px;margin-bottom:6px}
+.toolcard p{font-size:14px;color:#475569;margin-bottom:12px}
+section{padding:26px 0}
+h2.sec{font-size:25px;margin-bottom:4px}
+p.lead{color:#475569;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.feat{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px}
+.feat h3{font-size:17px;margin-bottom:6px}
+.feat p{font-size:14px;color:#475569}
+article.prose{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:28px;margin:24px 0}
+article.prose h1{font-size:30px;line-height:1.25;margin-bottom:8px}
+article.prose h2{font-size:21px;margin:26px 0 8px}
+article.prose p{margin-bottom:14px}
+article.prose ul{margin:0 0 14px 22px}
+article.prose li{margin-bottom:6px}
+.heroimg{width:100%;border-radius:12px;margin:10px 0 6px}
+.faq{background:#f1f5f9;border-radius:12px;padding:20px;margin-top:26px}
+.faq h2{margin:0 0 10px}
+.faq h3{font-size:16px;margin:14px 0 4px}
+.faq p{font-size:15px;color:#334155}
+.breadcrumb{font-size:14px;color:#64748b;margin:18px 0 0}
+.result{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:16px;margin:14px 0}
+.warn{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px;margin:14px 0;font-size:15px}
+footer{background:#0f172a;color:#94a3b8;padding:30px 0;margin-top:30px}
+footer a{color:#cbd5e1}
+footer .wrap{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
+.note{font-size:13px;color:#64748b}
+@media(max-width:640px){.hero h1{font-size:27px}article.prose{padding:18px}.card{flex-basis:250px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/">Password<span>Generator</span></a>
+<nav><a href="/">Home</a><a href="/tools/passphrase-generator.html">Passphrase</a><a href="/tools/pin-generator.html">PIN</a><a href="/tools/password-strength-checker.html">Strength Checker</a><a href="/tools/password-entropy-calculator.html">Entropy Calculator</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="/">Home</a> &rsaquo; Guides &rsaquo; Two-Factor Authentication: A Complete Beginner's Guide</p><article class="prose"><h1>Two-Factor Authentication: A Complete Beginner's Guide</h1><p class="meta">A stolen password should not be enough to break into your account. Two-factor authentication makes sure it is not.</p><img class="heroimg" src="/images/two-factor-authentication-guide.jpg" alt="Two-Factor Authentication: A Complete Beginner's Guide"><p>Two-factor authentication, usually shortened to 2FA, is a simple idea with an outsized effect: logging in requires two different kinds of proof instead of one. The first proof is something you know — your password. The second is something you have, such as your phone, or something you are, such as your fingerprint. An attacker who steals your password still cannot get in, because they do not have your second factor. Given how often passwords leak in breaches and phishing attacks, 2FA is the single most effective step you can take after using unique passwords, and it takes only a few minutes to set up on each account.</p><h2>How two-factor authentication works</h2><p>When you log in with 2FA enabled, you enter your password as usual, then the service asks for a second check. That check might be a six-digit code from an authenticator app, a tap on a notification on your phone, a code sent by text message, or a touch on a hardware security key. The code changes every thirty seconds, so a stolen code is useless within a minute. The service verifies the code against a secret that was shared with your device when you set it up, using the current time. Because the code is generated on your device and never travels over the internet, intercepting it is very difficult. The whole process adds about ten seconds to a login and blocks the vast majority of account-takeover attempts.</p><h2>Which second factor should you choose?</h2><p>Not all second factors are equal. A hardware security key, a small USB device you tap to approve a login, is the strongest option and is nearly immune to phishing. Authenticator apps such as Google Authenticator, Microsoft Authenticator or Authy are the next best: they generate codes offline and cannot be intercepted in transit. Text-message codes are the weakest common option, because phone numbers can be hijacked through SIM-swap fraud, but they are still far better than no second factor at all. Email codes sit somewhere in the middle. If a service offers an authenticator app or a security key, choose that; use text messages only when nothing better is offered.</p><h2>Setting it up, account by account</h2><p>Start with your email account, because it controls password resets for nearly everything else. Then protect banking, cloud storage, social media and any shopping site that stores your payment details. On each site, look in the security or privacy settings for two-factor authentication, authenticator app, or security key. The site will show a QR code; scan it with your authenticator app, type the code it shows, and save the backup or recovery codes the site gives you. Keep those recovery codes somewhere safe — a printed copy in a drawer — because losing your phone without recovery codes can lock you out of your own account. The setup takes about three minutes per site.</p><h2>What if you lose your phone?</h2><p>This is the fear that stops many people from enabling 2FA, and it is solvable. First, keep the recovery codes every service gives you during setup; they let you get back in without your phone. Second, many authenticator apps offer encrypted cloud backup of your codes, so a new phone restores them. Third, some services let you register a second device or a backup phone number. Do all three where possible, and keep a printed list of recovery codes at home. If you are locked out anyway, account recovery usually involves proving your identity with documents or answering security questions, which takes days — a good reason to prepare before you need it.</p><h2>Common mistakes to avoid</h2><p>Do not use the same phone number for 2FA on every account if you can avoid it, and be wary of services that only offer text-message codes for high-value accounts. Never share a 2FA code with anyone, including someone claiming to be support staff — no legitimate company will ever ask for your code, and anyone who has it can log in as you. Do not approve unexpected login prompts on your phone; if you get a push notification you did not trigger, someone may have your password and is waiting for your tap. And remember that 2FA protects logins, not your data if your device itself is compromised, so keep your phone's lock screen and software updates current too.</p><div class="faq"><h2>Frequently asked questions</h2><h3>Is two-factor authentication really necessary?</h3><p>Yes. Passwords leak constantly, and 2FA stops a stolen password from being enough to take over your account.</p><h3>Are text-message codes safe enough?</h3><p>They are much better than nothing, but authenticator apps and security keys are stronger because phone numbers can be hijacked.</p><h3>Will 2FA lock me out if I lose my phone?</h3><p>Only if you have no recovery codes or backup. Save the recovery codes given during setup and keep them somewhere safe.</p></div><h2>More guides</h2><ul><li><a href="/guides/how-to-create-a-strong-password.html">How to Create a Strong Password That You Can Actually Remember</a></li><li><a href="/guides/passphrase-vs-password.html">Passphrase vs Password: Which Is Safer?</a></li><li><a href="/guides/password-managers-explained.html">Password Managers Explained: Are They Safe to Use?</a></li><li><a href="/guides/stop-reusing-passwords.html">Why Reusing Passwords Is Dangerous (and How to Stop)</a></li></ul><p><a class="btn" href="/">Try the free password generator</a></p></article></div>
+<footer><div class="wrap"><div><strong style="color:#fff">Password Generator</strong><br>Free password tools that run entirely in your browser.<br>Your passwords never leave your device.</div><div><a href="/about.html">About</a> &middot; <a href="/contact.html">Contact</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/disclaimer.html">Disclaimer</a></div></div></footer>
+</body>
+</html>
